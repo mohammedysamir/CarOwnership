@@ -6,6 +6,19 @@ import jakarta.persistence.*;
 public class Car {
     String color;
     String model;
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "color='" + color + '\'' +
+                ", model='" + model + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", engine=" + engine.toString() +
+                ", numberOfPassengers=" + numberOfPassengers +
+                ", id=" + id +
+                '}';
+    }
+
     String manufacturer;
     @OneToOne(cascade = CascadeType.ALL)
     Engine engine;

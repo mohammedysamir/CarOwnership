@@ -6,6 +6,18 @@ import jakarta.persistence.*;
 public class Person {
     String firstName;
     String lastName;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationalId='" + nationalId + '\'' +
+                ", car=" + car.toString() +
+                ", id=" + id +
+                '}';
+    }
+
     String nationalId;
     @OneToOne(cascade = CascadeType.ALL)
     Car car;

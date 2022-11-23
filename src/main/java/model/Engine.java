@@ -22,6 +22,15 @@ public class Engine {
 
     }
 
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "cylinder=" + cylinder +
+                ", type=" + type +
+                ", id=" + id +
+                '}';
+    }
+
     public void start() {
         System.out.println("Engine is starting...");
     }
