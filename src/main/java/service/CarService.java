@@ -24,7 +24,7 @@ public class CarService {
     }
 
     public Car updateCar(Car car) {
-        Query query = session.createQuery("UPDATE Car c SET c.color =: color, c.model =: model, c.engine=:engine WHERE c.id =: id");
+        Query query = session.createQuery("UPDATE Car c SET c.color =: color, c.model =: model, c.engine=:engine WHERE c.id =: id",Car.class);
         query.setParameter(1, car.getColor());
         query.setParameter(2, car.getModel());
         query.setParameter(3, car.getEngine());
