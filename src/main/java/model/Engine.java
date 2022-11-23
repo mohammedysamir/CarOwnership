@@ -26,6 +26,22 @@ public class Engine {
         System.out.println("Engine is starting...");
     }
 
+    public int getCylinder() {
+        return cylinder;
+    }
+
+    public void setCylinder(int cylinder) {
+        this.cylinder = cylinder;
+    }
+
+    public char getType() {
+        return type;
+    }
+
+    public void setType(char type) {
+        this.type = type;
+    }
+
     public void stop() {
         System.out.println("Engine is stopping...");
     }
