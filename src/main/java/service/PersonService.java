@@ -30,11 +30,11 @@ public class PersonService {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("UPDATE Person p SET p.firstName =: first, p.lastName =: last, p.nationalId=:nationalId, p.car=: car WHERE p.id =: id", Person.class);
-        query.setParameter(1, Person.getFirstName());
-        query.setParameter(2, Person.getLastName());
-        query.setParameter(3, Person.getNationalId());
-        query.setParameter(4, Person.getCar());
-        query.setParameter(5, Person.getId());
+        query.setParameter("first", Person.getFirstName());
+        query.setParameter("last", Person.getLastName());
+        query.setParameter("nationalId", Person.getNationalId());
+        query.setParameter("car", Person.getCar());
+        query.setParameter("id", Person.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -46,7 +46,7 @@ public class PersonService {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("DELETE from Person p WHERE p.id =: id");
-        query.setParameter(1, person.getId());
+        query.setParameter("id", person.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -64,7 +64,7 @@ public class PersonService {
     public Person getPersonById(Long id) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person person where person.id=: id", Person.class);
-        query.setParameter(1, id);
+        query.setParameter("id", id);
         Person person = (Person) query.getSingleResultOrNull();
         session.close();
         return person;
@@ -73,7 +73,7 @@ public class PersonService {
     public List<Person> getPeopleByFirstName(String firstName) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person person where person.firstName=: firstName", Person.class);
-        query.setParameter(1, firstName);
+        query.setParameter("firstName", firstName);
         List<Person> result = query.getResultList();
         session.close();
         return result;
@@ -82,7 +82,7 @@ public class PersonService {
     public List<Person> getPeopleByLastName(String lastName) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person Person where person.lastName=: lastName", Person.class);
-        query.setParameter(1, lastName);
+        query.setParameter("lastName", lastName);
         List<Person> result = query.getResultList();
         session.close();
         return result;
@@ -91,7 +91,7 @@ public class PersonService {
     public Person getPersonByNationalId(String nationdalId) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person person where person.nationalId=: nationalId", Person.class);
-        query.setParameter(1, nationdalId);
+        query.setParameter("nationalId", nationdalId);
         Person perosn = (Person) query.getSingleResultOrNull();
         session.close();
         return perosn;
@@ -100,7 +100,7 @@ public class PersonService {
     public List<Person> getPeopleByCar(Car car) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person Person where person.car=: car", Person.class);
-        query.setParameter(1, car);
+        query.setParameter("car", car);
         List<Person> result = query.getResultList();
         session.close();
         return result;

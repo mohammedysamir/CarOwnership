@@ -32,7 +32,7 @@ public class CarAgencyService {
         Query query = session.createQuery("UPDATE CarAgency ca SET ca.agencyName =: agencyName, ca.cars =: cars WHERE ca.id =: id", CarAgency.class);
         query.setParameter("agencyName", carAgency.getAgencyName());
         query.setParameter("cars", carAgency.getCars());
-        query.setParameter(3, carAgency.getId());
+        query.setParameter("id", carAgency.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -44,7 +44,7 @@ public class CarAgencyService {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("DELETE from CarAgency ca WHERE ca.id =: id");
-        query.setParameter(1, carAgency.getId());
+        query.setParameter("id", carAgency.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -62,7 +62,7 @@ public class CarAgencyService {
     public CarAgency getCarAgencyById(Long id) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT ca from CarAgency ca where ca.id=: id", CarAgency.class);
-        query.setParameter(1, id);
+        query.setParameter("id", id);
         CarAgency agency = (CarAgency) query.getSingleResultOrNull();
         session.close();
         return agency;
@@ -70,8 +70,8 @@ public class CarAgencyService {
 
     public List<CarAgency> getCarAgencyByName(String name) {
         Session session = factory.openSession();
-        Query query = session.createQuery("select DISTINCT ca from CarAgency ca where ca.agencyName=: type", CarAgency.class);
-        query.setParameter(1, name);
+        Query query = session.createQuery("select DISTINCT ca from CarAgency ca where ca.agencyName=: agencyName", CarAgency.class);
+        query.setParameter("agencyName", name);
         List<CarAgency> agencies = query.getResultList();
         session.close();
         return agencies;

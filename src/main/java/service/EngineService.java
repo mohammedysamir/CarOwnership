@@ -60,7 +60,7 @@ public class EngineService {
     public Engine getEngineById(Long id) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT engine from Engine engine where engine.id=: id", Engine.class);
-        query.setParameter(1, id);
+        query.setParameter("id", id);
         Engine result = (Engine) query.getSingleResultOrNull();
         session.close();
         return result;
@@ -69,7 +69,7 @@ public class EngineService {
     public List<Engine> getEngineByType(char type) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT engine from Engine engine where engine.type=: type", Engine.class);
-        query.setParameter(1, type);
+        query.setParameter("type", type);
         List<Engine> engines = query.getResultList();
         session.close();
         return engines;
@@ -78,7 +78,7 @@ public class EngineService {
     public List<Engine> getEngineByCylinder(int cylinders) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT engine from Engine engine where engine.cylinder=: cylinders", Engine.class);
-        query.setParameter(1, cylinders);
+        query.setParameter("cylinders", cylinders);
         List<Engine> engines = query.getResultList();
         session.close();
         return engines;

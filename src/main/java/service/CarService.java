@@ -28,10 +28,10 @@ public class CarService {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("UPDATE Car c SET c.color =: color, c.model =: model, c.engine=:engine WHERE c.id =: id", Car.class);
-        query.setParameter(1, car.getColor());
-        query.setParameter(2, car.getModel());
-        query.setParameter(3, car.getEngine());
-        query.setParameter(4, car.getId());
+        query.setParameter("color", car.getColor());
+        query.setParameter("model", car.getModel());
+        query.setParameter("engine", car.getEngine());
+        query.setParameter("id", car.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -43,7 +43,7 @@ public class CarService {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("DELETE from Car c WHERE c.id =: id");
-        query.setParameter(1, car.getId());
+        query.setParameter("id", car.getId());
         transaction.commit();
         session.close();
         if (query.executeUpdate() > 0)
@@ -61,7 +61,7 @@ public class CarService {
     public Car getCarById(Long id) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.id=: id", Car.class);
-        query.setParameter(1, id);
+        query.setParameter("id", id);
         Car result = (Car) query.getSingleResultOrNull();
         session.close();
         return result;
@@ -70,7 +70,7 @@ public class CarService {
     public List<Car> getCarByModel(String model) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.model=: model", Car.class);
-        query.setParameter(1, model);
+        query.setParameter("model", model);
         List<Car> cars = query.getResultList();
         session.close();
         return cars;
@@ -79,7 +79,7 @@ public class CarService {
     public List<Car> getCarByEngine(Engine engine) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.engine=: engine", Car.class);
-        query.setParameter(1, engine);
+        query.setParameter("engine", engine);
         List<Car> cars = query.getResultList();
         session.close();
         return cars;
@@ -88,7 +88,7 @@ public class CarService {
     public List<Car> getCarByManufacturer(String manufacturer) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.manufacturer=: manufacturer", Car.class);
-        query.setParameter(1, manufacturer);
+        query.setParameter("manufacturer", manufacturer);
         List<Car> cars = query.getResultList();
         session.close();
         return cars;
