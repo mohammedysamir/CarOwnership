@@ -7,7 +7,7 @@ public class Person {
     String firstName;
     String lastName;
     String nationalId;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Car car;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

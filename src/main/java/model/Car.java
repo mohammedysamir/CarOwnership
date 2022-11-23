@@ -7,7 +7,7 @@ public class Car {
     String color;
     String model;
     String manufacturer;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Engine engine;
     int numberOfPassengers;
     @Id

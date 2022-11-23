@@ -1,12 +1,14 @@
 package model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.util.List;
 
 public class CarAgency {
     String agencyName;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Car> cars;
 
     public void addCar(Car car) {
