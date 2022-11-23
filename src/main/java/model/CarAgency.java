@@ -1,15 +1,20 @@
 package model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
 
+@Entity
 public class CarAgency {
     String agencyName;
     @OneToMany(cascade = CascadeType.ALL)
     List<Car> cars;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    public CarAgency() {
+    }
 
     public void addCar(Car car) {
         cars.add(car);
@@ -34,5 +39,13 @@ public class CarAgency {
     public CarAgency(String agencyName, List<Car> cars) {
         this.agencyName = agencyName;
         this.cars = cars;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -51,7 +51,7 @@ public class EngineService {
         return (Engine) query.getSingleResultOrNull();
     }
 
-    public List<Engine> getEngineByType(String type) {
+    public List<Engine> getEngineByType(char type) {
         Query query = session.createQuery("select DISTINCT engine from Engine engine where engine.type=: type", Engine.class);
         query.setParameter(1, type);
         return query.getResultList();
