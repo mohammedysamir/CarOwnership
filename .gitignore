@@ -28,3 +28,10 @@ bin/
 ### Mac OS ###
 .DS_Store
 /.idea/
+/target/classes/model/Car.class
+/target/classes/model/CarAgency.class
+/target/classes/model/Engine.class
+/target/classes/Main.class
+/target/classes/model/Person.class
+/target/maven-archiver/pom.properties
+/target/classes/service/*.class
