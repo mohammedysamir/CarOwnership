@@ -34,3 +34,4 @@ bin/
 /target/classes/Main.class
 /target/classes/model/Person.class
 /target/maven-archiver/pom.properties
+/target/classes/service/*.class

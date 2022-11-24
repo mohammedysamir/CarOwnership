@@ -6,12 +6,26 @@ import jakarta.persistence.*;
 public class Person {
     String firstName;
     String lastName;
+
+
     String nationalId;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     Car car;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationalId='" + nationalId + '\'' +
+                ", car=" + car.toString() +
+                ", id=" + id +
+                '}';
+    }
 
     public Person() {
     }
