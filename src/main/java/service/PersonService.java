@@ -72,7 +72,7 @@ public class PersonService {
 
     public List<Person> getPeopleByFirstName(String firstName) {
         Session session = factory.openSession();
-        Query query = session.createQuery("select DISTINCT person from Person person where person.firstName=: firstName", Person.class);
+        Query query = session.createQuery("select person from Person person where person.firstName=: firstName", Person.class);
         query.setParameter("firstName", firstName);
         List<Person> result = query.getResultList();
         session.close();
@@ -81,17 +81,17 @@ public class PersonService {
 
     public List<Person> getPeopleByLastName(String lastName) {
         Session session = factory.openSession();
-        Query query = session.createQuery("select DISTINCT person from Person Person where person.lastName=: lastName", Person.class);
+        Query query = session.createQuery("select person from Person person where person.lastName=: lastName", Person.class);
         query.setParameter("lastName", lastName);
         List<Person> result = query.getResultList();
         session.close();
         return result;
     }
 
-    public Person getPersonByNationalId(String nationdalId) {
+    public Person getPersonByNationalId(String nationalId) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT person from Person person where person.nationalId=: nationalId", Person.class);
-        query.setParameter("nationalId", nationdalId);
+        query.setParameter("nationalId", nationalId);
         Person perosn = (Person) query.getSingleResultOrNull();
         session.close();
         return perosn;
@@ -99,7 +99,7 @@ public class PersonService {
 
     public List<Person> getPeopleByCar(Car car) {
         Session session = factory.openSession();
-        Query query = session.createQuery("select DISTINCT person from Person Person where person.car=: car", Person.class);
+        Query query = session.createQuery("select person from Person person where person.car=: car", Person.class);
         query.setParameter("car", car);
         List<Person> result = query.getResultList();
         session.close();
