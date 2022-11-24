@@ -76,6 +76,15 @@ public class CarService {
         return cars;
     }
 
+    public List<Car> getCarByColor(String color) {
+        Session session = factory.openSession();
+        Query query = session.createQuery("select DISTINCT car from Car car where car.color=: color", Car.class);
+        query.setParameter("color", color);
+        List<Car> cars = query.getResultList();
+        session.close();
+        return cars;
+    }
+
     public List<Car> getCarByEngine(Engine engine) {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.engine=: engine", Car.class);
@@ -89,6 +98,14 @@ public class CarService {
         Session session = factory.openSession();
         Query query = session.createQuery("select DISTINCT car from Car car where car.manufacturer=: manufacturer", Car.class);
         query.setParameter("manufacturer", manufacturer);
+        List<Car> cars = query.getResultList();
+        session.close();
+        return cars;
+    }
+    public List<Car> getCarByPassengerNumber(int passengers) {
+        Session session = factory.openSession();
+        Query query = session.createQuery("select DISTINCT car from Car car where car.numberOfPassengers=: passengers", Car.class);
+        query.setParameter("passengers", passengers);
         List<Car> cars = query.getResultList();
         session.close();
         return cars;
