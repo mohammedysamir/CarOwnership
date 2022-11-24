@@ -7,17 +7,6 @@ public class Car {
     String color;
     String model;
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "color='" + color + '\'' +
-                ", model='" + model + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", engine=" + engine.toString() +
-                ", numberOfPassengers=" + numberOfPassengers +
-                ", id=" + id +
-                '}';
-    }
 
     String manufacturer;
     @OneToOne(cascade = CascadeType.ALL)
@@ -83,5 +72,16 @@ public class Car {
 
     public Long getId() {
         return id;
+    }
+    @Override
+    public String toString() {
+        return "Car{" +
+                "color='" + color + '\'' +
+                ", model='" + model + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", engine=" + engine.toString() +
+                ", numberOfPassengers=" + numberOfPassengers +
+                ", id=" + id +
+                '}';
     }
 }
