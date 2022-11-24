@@ -7,6 +7,15 @@ public class Person {
     String firstName;
     String lastName;
 
+
+    String nationalId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    Car car;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @Override
     public String toString() {
         return "Person{" +
@@ -17,13 +26,6 @@ public class Person {
                 ", id=" + id +
                 '}';
     }
-
-    String nationalId;
-    @OneToOne(cascade = CascadeType.ALL)
-    Car car;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
 
     public Person() {
     }
